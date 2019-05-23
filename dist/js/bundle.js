@@ -95,29 +95,73 @@
 
 function autoSlider() {
 
-    let slides = document.querySelectorAll('.main-slider-item'),
-        n = 1;
-        
+}
 
-    setInterval(showSlides(n), 1000);
-    function showSlides(n) {
+module.exports = autoSlider;
 
-        if (n > slides.length) {
-            slideIndex = 1;
-        }
-        if (n < 1) {
-            slideIndex = slides.length;
-        }
+/***/ }),
 
-        slides.forEach((item) => item.style.display = 'none');
-        slides[n -1].style.display= 'block';
-        n++;
+/***/ "./src/parts/slider.js":
+/*!*****************************!*\
+  !*** ./src/parts/slider.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function slider() {
+    let slideIndex = 1,
+    slides = document.querySelectorAll('.feedback-slider-item'),
+    prev = document.querySelector('.main-prev-btn'),
+    next = document.querySelector('.main-next-btn');
+
+showSlides(slideIndex);
+let timer = setInterval(autoSlider, 5000);
+
+function showSlides(n) {
+
+    if (n > slides.length) {
+        slideIndex = 1;
     }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+
+    slides.forEach((item) => item.style.display= 'none');
+    slides[slideIndex - 1].style.display = 'block';
+}
+
+function autoSlider() {
+   
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    if (slideIndex < 1) {
+        slideIndex = slides.length;
+    }
+    
+    slides.forEach((item) => item.style.display= 'none');
+    slides[slideIndex - 1].style.display = 'block';
+    slideIndex++;
+}
+
+function plusSlide(n) {
+    showSlides(slideIndex += n);
+}
+
+prev.addEventListener('click', () => {
+    plusSlide(-1);
+    clearInterval(timer);
+});
+
+next.addEventListener('click', () => {
+    plusSlide(1);
+    clearInterval(timer);
+});
 
 
 }
 
-module.exports = autoSlider;
+module.exports = slider;
 
 /***/ }),
 
@@ -131,9 +175,11 @@ module.exports = autoSlider;
 window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
-    let autoSlider = __webpack_require__(/*! ./parts/autoSlider.js */ "./src/parts/autoSlider.js");
+    let autoSlider = __webpack_require__(/*! ./parts/autoSlider.js */ "./src/parts/autoSlider.js"),
+        slider = __webpack_require__(/*! ./parts/slider.js */ "./src/parts/slider.js");
 
     autoSlider();
+    slider();
 });
 
 /***/ })
