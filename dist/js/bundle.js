@@ -101,6 +101,82 @@ module.exports = autoSlider;
 
 /***/ }),
 
+/***/ "./src/parts/popupGift.js":
+/*!********************************!*\
+  !*** ./src/parts/popupGift.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function popupGift() {
+    let overlayGift = document.querySelector('.popup-gift'),
+        giftImg = document.querySelector('.fixed-gift'),
+        close = document.querySelector('.popup-gift > .popup-dialog > .popup-content > .popup-close');
+
+giftImg.addEventListener('click', () => {
+    giftImg.style.display = 'none';
+    overlayGift.style.display = 'block';
+
+    window.addEventListener('click', (e) => {
+        if (e.target === overlayGift) {
+            overlayGift.style.display = 'none';
+        }
+    });
+
+    close.addEventListener('click', () => {
+        overlayGift.style.display = 'none';
+    });
+});
+
+
+
+
+}
+    
+module.exports = popupGift;
+
+/***/ }),
+
+/***/ "./src/parts/scrollGift.js":
+/*!*********************************!*\
+  !*** ./src/parts/scrollGift.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function scrollGift() {
+
+let overlayGift = document.querySelector('.popup-gift'),
+        giftImg = document.querySelector('.fixed-gift'),
+        close = document.querySelector('.popup-gift > .popup-dialog > .popup-content > .popup-close'),
+        n = 0;
+
+    window.onscroll = function() {  
+        if ((document.documentElement.clientHeight + document.documentElement.scrollTop ) >= document.body.clientHeight) {
+            giftImg.style.display = 'none';
+            overlayGift.style.display = 'block';
+            close.addEventListener('click', () => {
+                overlayGift.style.display = 'none';
+            });
+            window.addEventListener('click', (e) => {
+                if (e.target === overlayGift) {
+                    overlayGift.style.display = 'none';
+                }
+            });
+            window.onscroll = null;
+            
+        }
+        
+
+    };
+    
+
+}
+
+module.exports = scrollGift;
+
+/***/ }),
+
 /***/ "./src/parts/slider.js":
 /*!*****************************!*\
   !*** ./src/parts/slider.js ***!
@@ -176,10 +252,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
     let autoSlider = __webpack_require__(/*! ./parts/autoSlider.js */ "./src/parts/autoSlider.js"),
-        slider = __webpack_require__(/*! ./parts/slider.js */ "./src/parts/slider.js");
+        slider = __webpack_require__(/*! ./parts/slider.js */ "./src/parts/slider.js"),
+        scrollGift = __webpack_require__(/*! ./parts/scrollGift.js */ "./src/parts/scrollGift.js"),
+        popupGift = __webpack_require__(/*! ./parts/popupGift.js */ "./src/parts/popupGift.js");
 
     autoSlider();
     slider();
+    popupGift();
+    scrollGift();
 });
 
 /***/ })
