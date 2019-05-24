@@ -101,6 +101,50 @@ module.exports = autoSlider;
 
 /***/ }),
 
+/***/ "./src/parts/popupConsultation.js":
+/*!****************************************!*\
+  !*** ./src/parts/popupConsultation.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function popupConsultation() {
+    let overlayConsultation = document.querySelector('.popup-consultation'),
+        buttonConsultation = document.querySelectorAll('.button-consultation'),
+        close = document.querySelector('.popup-consultation > .popup-dialog > .popup-content > .popup-close'),
+        giftImg = document.querySelector('.fixed-gift');
+    
+    function modalWindow(a) {
+        for (let k of a) {
+            k.addEventListener('click',  () => {
+                overlayConsultation.style.display = 'block';  
+                giftImg.style.display = 'none';
+            });
+    
+            close.addEventListener('click', () => {
+                overlayConsultation.style.display = 'none';
+                document.body.style.overflow = '';
+                giftImg.style.display = 'block';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === overlayConsultation) {
+                    overlayConsultation.style.display = 'none';
+                    giftImg.style.display = 'block';
+                }
+            });
+        }
+    }
+    
+    modalWindow(buttonConsultation);
+
+
+}
+    
+module.exports = popupConsultation;
+
+/***/ }),
+
 /***/ "./src/parts/popupGift.js":
 /*!********************************!*\
   !*** ./src/parts/popupGift.js ***!
@@ -113,20 +157,20 @@ function popupGift() {
         giftImg = document.querySelector('.fixed-gift'),
         close = document.querySelector('.popup-gift > .popup-dialog > .popup-content > .popup-close');
 
-giftImg.addEventListener('click', () => {
-    giftImg.style.display = 'none';
-    overlayGift.style.display = 'block';
+    giftImg.addEventListener('click', () => {
+        giftImg.style.display = 'none';
+        overlayGift.style.display = 'block';
 
-    window.addEventListener('click', (e) => {
-        if (e.target === overlayGift) {
+        window.addEventListener('click', (e) => {
+            if (e.target === overlayGift) {
+                overlayGift.style.display = 'none';
+            }
+        });
+
+        close.addEventListener('click', () => {
             overlayGift.style.display = 'none';
-        }
+        });
     });
-
-    close.addEventListener('click', () => {
-        overlayGift.style.display = 'none';
-    });
-});
 
 
 
@@ -146,31 +190,39 @@ module.exports = popupGift;
 
 function scrollGift() {
 
-let overlayGift = document.querySelector('.popup-gift'),
+    let overlayGift = document.querySelector('.popup-gift'),
         giftImg = document.querySelector('.fixed-gift'),
         close = document.querySelector('.popup-gift > .popup-dialog > .popup-content > .popup-close'),
-        n = 0;
-
-    window.onscroll = function() {  
-        if ((document.documentElement.clientHeight + document.documentElement.scrollTop ) >= document.body.clientHeight) {
-            giftImg.style.display = 'none';
-            overlayGift.style.display = 'block';
-            close.addEventListener('click', () => {
-                overlayGift.style.display = 'none';
-            });
-            window.addEventListener('click', (e) => {
-                if (e.target === overlayGift) {
-                    overlayGift.style.display = 'none';
-                }
-            });
-            window.onscroll = null;
-            
-        }
+        buttons = document.getElementsByTagName('button');
+        var q = 0;
         
 
-    };
-    
-
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', () => {
+            q++;
+            if (q > 0) {
+                window.onscroll = null; 
+            } else {
+                window.onscroll = function() {  
+                    if ((document.documentElement.clientHeight + document.documentElement.scrollTop ) >= document.body.clientHeight) {
+                        giftImg.style.display = 'none';
+                        overlayGift.style.display = 'block';
+                        close.addEventListener('click', () => {
+                            overlayGift.style.display = 'none';
+                        });
+                        window.addEventListener('click', (e) => {
+                            if (e.target === overlayGift) {
+                                overlayGift.style.display = 'none';
+                            }
+                        });
+                        window.onscroll = null;         
+                    }
+                };
+            }
+        }); 
+    }  
+     
+   
 }
 
 module.exports = scrollGift;
@@ -254,12 +306,14 @@ window.addEventListener('DOMContentLoaded', () => {
     let autoSlider = __webpack_require__(/*! ./parts/autoSlider.js */ "./src/parts/autoSlider.js"),
         slider = __webpack_require__(/*! ./parts/slider.js */ "./src/parts/slider.js"),
         scrollGift = __webpack_require__(/*! ./parts/scrollGift.js */ "./src/parts/scrollGift.js"),
-        popupGift = __webpack_require__(/*! ./parts/popupGift.js */ "./src/parts/popupGift.js");
+        popupGift = __webpack_require__(/*! ./parts/popupGift.js */ "./src/parts/popupGift.js"),
+        popupConsultation = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/parts/popupConsultation.js");
 
     autoSlider();
     slider();
     popupGift();
     scrollGift();
+    popupConsultation();
 });
 
 /***/ })
