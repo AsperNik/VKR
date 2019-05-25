@@ -101,6 +101,32 @@ module.exports = autoSlider;
 
 /***/ }),
 
+/***/ "./src/parts/moreStyles.js":
+/*!*********************************!*\
+  !*** ./src/parts/moreStyles.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function moreStyles() {
+    let btn = document.querySelector('.button-styles'),
+        stlBlocks = document.querySelectorAll('.hidden-lg.hidden-md.hidden-sm.hidden-xs.styles-2');
+
+    console.log(stlBlocks);
+    btn.addEventListener('click',  () => {
+        for (i = 0; i < stlBlocks.length; i++) {
+            stlBlocks[i].classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2'); 
+            stlBlocks[i].classList.add('col-sm-3', 'col-sm-offset-0', 'col-xs-10', 'col-xs-offset-1');
+            btn.style.display = 'none';
+        }
+    });
+
+}
+
+module.exports = moreStyles;
+
+/***/ }),
+
 /***/ "./src/parts/popupConsultation.js":
 /*!****************************************!*\
   !*** ./src/parts/popupConsultation.js ***!
@@ -142,6 +168,50 @@ function popupConsultation() {
 }
     
 module.exports = popupConsultation;
+
+/***/ }),
+
+/***/ "./src/parts/popupDesign.js":
+/*!**********************************!*\
+  !*** ./src/parts/popupDesign.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function popupDesign() {
+    let overlayDesign = document.querySelector('.popup-design'),
+        buttonDesign = document.querySelectorAll('.button-design'),
+        close = document.querySelector('.popup-design > .popup-dialog > .popup-content > .popup-close'),
+        giftImg = document.querySelector('.fixed-gift');
+    
+    function modalWindow(a) {
+        for (let k of a) {
+            k.addEventListener('click',  () => {
+                overlayDesign.style.display = 'block';  
+                giftImg.style.display = 'none';
+            });
+    
+            close.addEventListener('click', () => {
+                overlayDesign.style.display = 'none';
+                document.body.style.overflow = '';
+                giftImg.style.display = 'block';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === overlayDesign) {
+                    overlayDesign.style.display = 'none';
+                    giftImg.style.display = 'block';
+                }
+            });
+        }
+    }
+    
+    modalWindow(buttonDesign);
+
+
+}
+    
+module.exports = popupDesign;
 
 /***/ }),
 
@@ -307,13 +377,17 @@ window.addEventListener('DOMContentLoaded', () => {
         slider = __webpack_require__(/*! ./parts/slider.js */ "./src/parts/slider.js"),
         scrollGift = __webpack_require__(/*! ./parts/scrollGift.js */ "./src/parts/scrollGift.js"),
         popupGift = __webpack_require__(/*! ./parts/popupGift.js */ "./src/parts/popupGift.js"),
-        popupConsultation = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/parts/popupConsultation.js");
+        popupConsultation = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/parts/popupConsultation.js"),
+        popupDesign = __webpack_require__(/*! ./parts/popupDesign.js */ "./src/parts/popupDesign.js"),
+        moreStyles = __webpack_require__(/*! ./parts/moreStyles.js */ "./src/parts/moreStyles.js");
 
     autoSlider();
     slider();
     popupGift();
     scrollGift();
     popupConsultation();
+    popupDesign();
+    moreStyles();
 });
 
 /***/ })

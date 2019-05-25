@@ -5,11 +5,15 @@ window.addEventListener('DOMContentLoaded', () => {
         slider = require('./parts/slider.js'),
         scrollGift = require('./parts/scrollGift.js'),
         popupGift = require('./parts/popupGift.js'),
-        popupConsultation = require('./parts/popupConsultation.js');
+        popupConsultation = require('./parts/popupConsultation.js'),
+        popupDesign = require('./parts/popupDesign.js'),
+        moreStyles = require('./parts/moreStyles.js');
 
     autoSlider();
     slider();
     popupGift();
     scrollGift();
     popupConsultation();
+    popupDesign();
+    moreStyles();
 });
