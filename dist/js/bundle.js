@@ -101,6 +101,47 @@ module.exports = autoSlider;
 
 /***/ }),
 
+/***/ "./src/parts/minConsultation.js":
+/*!**************************************!*\
+  !*** ./src/parts/minConsultation.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function minConsultation() {
+    let overlayConsultation = document.querySelector('.popup-consultation'),
+        overlayDesign = document.querySelector('.popup-design'),
+        overlayGift = document.querySelector('.popup-gift'),
+        close = document.querySelector('.popup-consultation > .popup-dialog > .popup-content > .popup-close'),
+        giftImg = document.querySelector('.fixed-gift');
+
+    
+        setTimeout(function() {
+            if (overlayConsultation.style.display != 'block' && overlayDesign.style.display != 'block' && overlayGift.style.display != 'block'){
+                overlayConsultation.style.display = 'block';  
+                giftImg.style.display = 'none';
+        
+                close.addEventListener('click', () => {
+                    overlayConsultation.style.display = 'none';
+                    document.body.style.overflow = '';
+                    giftImg.style.display = 'block';
+                });
+        
+                window.addEventListener('click', (e) => {
+                    if (e.target === overlayConsultation) {
+                        overlayConsultation.style.display = 'none';
+                        giftImg.style.display = 'block';
+                    }
+                });
+            }
+        }, 60000);
+  
+}
+
+module.exports = minConsultation;
+
+/***/ }),
+
 /***/ "./src/parts/moreStyles.js":
 /*!*********************************!*\
   !*** ./src/parts/moreStyles.js ***!
@@ -112,7 +153,7 @@ function moreStyles() {
     let btn = document.querySelector('.button-styles'),
         stlBlocks = document.querySelectorAll('.hidden-lg.hidden-md.hidden-sm.hidden-xs.styles-2');
 
-    console.log(stlBlocks);
+
     btn.addEventListener('click',  () => {
         for (i = 0; i < stlBlocks.length; i++) {
             stlBlocks[i].classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2'); 
@@ -379,7 +420,8 @@ window.addEventListener('DOMContentLoaded', () => {
         popupGift = __webpack_require__(/*! ./parts/popupGift.js */ "./src/parts/popupGift.js"),
         popupConsultation = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/parts/popupConsultation.js"),
         popupDesign = __webpack_require__(/*! ./parts/popupDesign.js */ "./src/parts/popupDesign.js"),
-        moreStyles = __webpack_require__(/*! ./parts/moreStyles.js */ "./src/parts/moreStyles.js");
+        moreStyles = __webpack_require__(/*! ./parts/moreStyles.js */ "./src/parts/moreStyles.js"),
+        minConsultation = __webpack_require__(/*! ./parts/minConsultation.js */ "./src/parts/minConsultation.js");
 
     autoSlider();
     slider();
@@ -388,6 +430,7 @@ window.addEventListener('DOMContentLoaded', () => {
     popupConsultation();
     popupDesign();
     moreStyles();
+    minConsultation();
 });
 
 /***/ })

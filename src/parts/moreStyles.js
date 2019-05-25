@@ -2,7 +2,7 @@ function moreStyles() {
     let btn = document.querySelector('.button-styles'),
         stlBlocks = document.querySelectorAll('.hidden-lg.hidden-md.hidden-sm.hidden-xs.styles-2');
 
-    console.log(stlBlocks);
+
     btn.addEventListener('click',  () => {
         for (i = 0; i < stlBlocks.length; i++) {
             stlBlocks[i].classList.remove('hidden-lg', 'hidden-md', 'hidden-sm', 'hidden-xs', 'styles-2'); 
