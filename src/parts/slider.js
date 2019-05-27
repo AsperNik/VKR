@@ -4,6 +4,10 @@ function slider() {
     prev = document.querySelector('.main-prev-btn'),
     next = document.querySelector('.main-next-btn');
 
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.add('fadeInLeft');
+        console.log(slides[i]);
+    }
 showSlides(slideIndex);
 let timer = setInterval(autoSlider, 5000);
 

@@ -101,6 +101,25 @@ module.exports = autoSlider;
 
 /***/ }),
 
+/***/ "./src/parts/calc.js":
+/*!***************************!*\
+  !*** ./src/parts/calc.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function calc() {
+    let size = document.getElementById('size'),
+        material = document.getElementById('material'),
+        options = document.getElementById('options');
+
+    
+}
+
+module.exports = calc;
+
+/***/ }),
+
 /***/ "./src/parts/minConsultation.js":
 /*!**************************************!*\
   !*** ./src/parts/minConsultation.js ***!
@@ -353,6 +372,10 @@ function slider() {
     prev = document.querySelector('.main-prev-btn'),
     next = document.querySelector('.main-next-btn');
 
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.add('fadeInLeft');
+        console.log(slides[i]);
+    }
 showSlides(slideIndex);
 let timer = setInterval(autoSlider, 5000);
 
@@ -421,7 +444,8 @@ window.addEventListener('DOMContentLoaded', () => {
         popupConsultation = __webpack_require__(/*! ./parts/popupConsultation.js */ "./src/parts/popupConsultation.js"),
         popupDesign = __webpack_require__(/*! ./parts/popupDesign.js */ "./src/parts/popupDesign.js"),
         moreStyles = __webpack_require__(/*! ./parts/moreStyles.js */ "./src/parts/moreStyles.js"),
-        minConsultation = __webpack_require__(/*! ./parts/minConsultation.js */ "./src/parts/minConsultation.js");
+        minConsultation = __webpack_require__(/*! ./parts/minConsultation.js */ "./src/parts/minConsultation.js"),
+        calc = __webpack_require__(/*! ./parts/calc.js */ "./src/parts/calc.js");
 
     autoSlider();
     slider();
@@ -431,6 +455,7 @@ window.addEventListener('DOMContentLoaded', () => {
     popupDesign();
     moreStyles();
     minConsultation();
+    calc();
 });
 
 /***/ })

@@ -8,7 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
         popupConsultation = require('./parts/popupConsultation.js'),
         popupDesign = require('./parts/popupDesign.js'),
         moreStyles = require('./parts/moreStyles.js'),
-        minConsultation = require('./parts/minConsultation.js');
+        minConsultation = require('./parts/minConsultation.js'),
+        calc = require('./parts/calc.js');
 
     autoSlider();
     slider();
@@ -18,4 +19,5 @@ window.addEventListener('DOMContentLoaded', () => {
     popupDesign();
     moreStyles();
     minConsultation();
+    calc();
 });
