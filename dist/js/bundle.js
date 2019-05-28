@@ -111,7 +111,8 @@ module.exports = autoSlider;
 function calc() {
     let size = document.getElementById('size'),
         material = document.getElementById('material'),
-        options = document.getElementById('options');
+        options = document.getElementById('options'),
+        price = document.querySelector('.calc-price');
 
     
 }
@@ -325,34 +326,32 @@ function scrollGift() {
         close = document.querySelector('.popup-gift > .popup-dialog > .popup-content > .popup-close'),
         buttons = document.getElementsByTagName('button');
         var q = 0;
-        
 
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', () => {
-            q++;
-            if (q > 0) {
-                window.onscroll = null; 
-            } else {
-                window.onscroll = function() {  
-                    if ((document.documentElement.clientHeight + document.documentElement.scrollTop ) >= document.body.clientHeight) {
-                        giftImg.style.display = 'none';
-                        overlayGift.style.display = 'block';
-                        close.addEventListener('click', () => {
-                            overlayGift.style.display = 'none';
-                        });
-                        window.addEventListener('click', (e) => {
-                            if (e.target === overlayGift) {
-                                overlayGift.style.display = 'none';
-                            }
-                        });
-                        window.onscroll = null;         
+    window.onscroll = function() {  
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', () => {
+                return ++q;
+            });
+        }
+        if (q > 0) {
+            window.onscroll = null; 
+        } else {
+            if ((document.documentElement.clientHeight + document.documentElement.scrollTop ) >= document.body.clientHeight) {
+                giftImg.style.display = 'none';
+                overlayGift.style.display = 'block';
+                close.addEventListener('click', () => {
+                    overlayGift.style.display = 'none';
+                });
+                window.addEventListener('click', (e) => {
+                    if (e.target === overlayGift) {
+                        overlayGift.style.display = 'none';
                     }
-                };
+                });
+                window.onscroll = null;         
             }
-        }); 
-    }  
-     
-   
+        }
+    };
+
 }
 
 module.exports = scrollGift;
@@ -372,10 +371,7 @@ function slider() {
     prev = document.querySelector('.main-prev-btn'),
     next = document.querySelector('.main-next-btn');
 
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.add('fadeInLeft');
-        console.log(slides[i]);
-    }
+
 showSlides(slideIndex);
 let timer = setInterval(autoSlider, 5000);
 
@@ -390,6 +386,7 @@ function showSlides(n) {
 
     slides.forEach((item) => item.style.display= 'none');
     slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add('fadeInLeft');
 }
 
 function autoSlider() {
@@ -403,6 +400,7 @@ function autoSlider() {
     
     slides.forEach((item) => item.style.display= 'none');
     slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add('fadeInLeft');
     slideIndex++;
 }
 

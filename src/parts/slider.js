@@ -4,10 +4,7 @@ function slider() {
     prev = document.querySelector('.main-prev-btn'),
     next = document.querySelector('.main-next-btn');
 
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.add('fadeInLeft');
-        console.log(slides[i]);
-    }
+
 showSlides(slideIndex);
 let timer = setInterval(autoSlider, 5000);
 
@@ -22,6 +19,7 @@ function showSlides(n) {
 
     slides.forEach((item) => item.style.display= 'none');
     slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add('fadeInLeft');
 }
 
 function autoSlider() {
@@ -35,6 +33,7 @@ function autoSlider() {
     
     slides.forEach((item) => item.style.display= 'none');
     slides[slideIndex - 1].style.display = 'block';
+    slides[slideIndex - 1].classList.add('fadeInLeft');
     slideIndex++;
 }
 
